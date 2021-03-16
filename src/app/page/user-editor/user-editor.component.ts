@@ -37,10 +37,10 @@ export class UserEditorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  clicked: boolean = false;
   onUpdate(form: NgForm, user: User): void {
     this.clicked = true;
-    console.log('onUpdate:',form.value, user)
-    console.log(user);
+
     if (!user.id) {
       this.userService.create(user);
       this.router.navigate(['']);

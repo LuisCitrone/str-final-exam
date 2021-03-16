@@ -1,7 +1,7 @@
 <div class="row">
-  <div *ngIf="user$ | async as user" class="col-6 offset-3 mt-3">
+  <div *ngIf="(user$ | async) as user" class="col-6 offset-3 mt-3">
     <h2>Update / Create User</h2>
-    <form #userForm="ngForm">
+    <form #userForm="ngForm" (ngSubmit)="onUpdate(userForm, user)">
       <input name="id" type="hidden" [(ngModel)]="user.id">
       <div class="form-group">
         <label>Name</label>
@@ -10,7 +10,7 @@
         class="form-control"
         type="text"
         name="name"
-        [(ngModel)]="user.name">
+        [(ngModel)]="user.name"
         pattern="[a-zA-Z\s]{8,40}$" required>
       </div>
       <div [hidden]="userForm.controls.name?.valid" class="error-message">
@@ -25,7 +25,7 @@
           class="form-control"
           type="text"
           name="email"
-          [(ngModel)]="user.email">
+          [(ngModel)]="user.email"
           pattern="^[a-z0-9.]{3,20}[@]{1}[a-z]{3,8}([.]{1}[a-z]{2,3}){1,2}$" required>
         </div>
         <div [hidden]="userForm.controls.email?.valid" class="error-message">
@@ -39,12 +39,12 @@
           class="form-control"
           type="text"
           name="address"
-          [(ngModel)]="user.address">
+          [(ngModel)]="user.address"
           pattern="[a-zA-Z\s0-9.,]{8,100}$" required>
-        </div>
-        <div [hidden]="userForm.controls.address?.valid" class="error-message">
-          The address must be min 8 max 100 characters long!
-        </div>
+      </div>
+      <div [hidden]="userForm.controls.address?.valid" class="error-message">
+        The address must be min 8 max 100 characters long!
+      </div>
 
       <div class="form-group">
         <label>Active</label>
