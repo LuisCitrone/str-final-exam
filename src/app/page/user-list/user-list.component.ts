@@ -12,11 +12,14 @@ export class UserListComponent implements OnInit {
 
   users$: Observable<User[]> = this.userService.getAll();
   phrase: string = '';
+  columnKey: string = 'id';
   constructor(
     private userService: UserService,
   ) { }
 
   ngOnInit(): void {
   }
-
+  onColumnSelect(key: string): void {
+    this.columnKey = key;
+  }
 }
