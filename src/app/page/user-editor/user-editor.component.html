@@ -11,7 +11,12 @@
         type="text"
         name="name"
         [(ngModel)]="user.name">
+        pattern="[a-zA-Z\s]{8,40}$" required>
       </div>
+      <div [hidden]="userForm.controls.name?.valid" class="error-message">
+        The name must be min 8 max 40 characters long!
+      </div>
+
       <div class="form-group">
         <label>Email</label>
         <!-- Validation: valid email, required.
@@ -21,7 +26,12 @@
           type="text"
           name="email"
           [(ngModel)]="user.email">
+          pattern="^[a-z0-9.]{3,20}[@]{1}[a-z]{3,8}([.]{1}[a-z]{2,3}){1,2}$" required>
         </div>
+        <div [hidden]="userForm.controls.email?.valid" class="error-message">
+          The email must contain "@" and "." For example: name@company.com!
+        </div>
+
         <div class="form-group">
           <label>Address</label>
           <!-- Validation: min 8 char, max 100 char, required -->
@@ -30,7 +40,12 @@
           type="text"
           name="address"
           [(ngModel)]="user.address">
-      </div>
+          pattern="[a-zA-Z\s0-9.,]{8,100}$" required>
+        </div>
+        <div [hidden]="userForm.controls.address?.valid" class="error-message">
+          The address must be min 8 max 100 characters long!
+        </div>
+
       <div class="form-group">
         <label>Active</label>
         <!-- No validation. -->
@@ -39,9 +54,11 @@
           <option [ngValue]="false">inactive</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary btn-block mt-5">
+
+      <button [disabled]="userForm.invalid || clicked" (click)="onUpdate(user)" type="submit" class="btn btn-primary btn-block mt-5">
         <i class="fa fa-save"></i>
       </button>
+
     </form>
   </div>
 </div>
