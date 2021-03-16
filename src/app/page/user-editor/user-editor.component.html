@@ -14,7 +14,7 @@
         pattern="[a-zA-Z\s]{8,40}$" required>
       </div>
       <div [hidden]="userForm.controls.name?.valid" class="error-message">
-        The name must be min 8 max 40 characters long!
+        name: min 8 max 40 characters
       </div>
 
       <div class="form-group">
@@ -29,7 +29,7 @@
           pattern="^[a-z0-9.]{3,20}[@]{1}[a-z]{3,8}([.]{1}[a-z]{2,3}){1,2}$" required>
         </div>
         <div [hidden]="userForm.controls.email?.valid" class="error-message">
-          The email must contain "@" and "." For example: name@company.com!
+          The email must contain "@" and "."  Example: username@gmail.com!
         </div>
 
         <div class="form-group">
@@ -43,7 +43,7 @@
           pattern="[a-zA-Z\s0-9.,]{8,100}$" required>
       </div>
       <div [hidden]="userForm.controls.address?.valid" class="error-message">
-        The address must be min 8 max 100 characters long!
+        address: min 8 max 100 characters
       </div>
 
       <div class="form-group">
@@ -55,7 +55,7 @@
         </select>
       </div>
 
-      <button [disabled]="userForm.invalid || clicked" (click)="onUpdate(user)" type="submit" class="btn btn-primary btn-block mt-5">
+      <button [disabled]="userForm.invalid || clicked" (click)="onUpdate(userForm, user)" type="submit" class="btn btn-primary btn-block mt-5">
         <i class="fa fa-save"></i>
       </button>
 
